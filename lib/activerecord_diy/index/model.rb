@@ -30,7 +30,7 @@ module ActiverecordDIY
         end
         def create_index_table!(tbl, cols, primary_key = self.primary_key, defined_columns = self.defined_columns, data_table = self.table_name)
           self.connection.instance_eval do
-            create_table(tbl, :force => false, :primary_key => 'guid') do |t|
+            create_table(tbl, :force => false, :primary_key => 'guid', :options=>"ENGINE=MyISAM") do |t|
               (cols - [primary_key]).uniq.each do |c|
                 if args = defined_columns[data_table][c]
                   t.send(:column, *args)

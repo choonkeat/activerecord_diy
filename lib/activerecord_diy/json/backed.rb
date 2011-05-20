@@ -21,7 +21,7 @@ module ActiverecordDIY
         def create_json_backed_table_if_missing
           tbl = self.table_name
           connection.instance_eval do
-            create_table(tbl, :primary_key => 'guid') do |t|
+            create_table(tbl, :primary_key => 'guid', :options=>"ENGINE=MyISAM") do |t|
               t.binary :json
               t.timestamps
             end
